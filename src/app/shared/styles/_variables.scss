@@ -1,0 +1,23 @@
+@import 'mixins';
+
+.p-1em
+{
+    padding: 1em;
+}
+
+.m-05em
+{
+    margin: .5em;
+}
+
+@include list-loop('.p-', 'padding');
+@include list-loop('.p-t-', 'padding-top');
+@include list-loop('.p-r-', 'padding-right');
+@include list-loop('.p-b-', 'padding-bottom');
+@include list-loop('.p-l-', 'padding-left');
+
+@include list-loop('.m-', 'margin');
+@include list-loop('.m-t-', 'margin-top');
+@include list-loop('.m-r-', 'margin-right');
+@include list-loop('.m-b-', 'margin-bottom');
+@include list-loop('.m-l-', 'margin-left');

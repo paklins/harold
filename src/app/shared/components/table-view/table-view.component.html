@@ -1,0 +1,32 @@
+    <!-- <div class="au-header">
+        <div *ngFor="let column of source.Columns"
+            class="au-header-column">
+            {{column.header}}
+        </div>
+    </div> -->
+
+<table *ngIf="source" class="au-table-view">
+    <thead class="au-header">
+        <tr class="au-header-layout">
+            <td *ngFor="let column of source.Columns"
+                class="au-header-column">
+                {{column.header}}
+            </td>
+        </tr>
+    </thead>
+    <tbody class="au-body"
+        (scroll)="tableBodyScroll($event)">
+        <tr *ngFor="let row of Rows"
+            class="au-row"
+            (click)="rowSelect(row.id)"
+            (mouseover)="rowMouseOver(row.id)"
+            (mouseout)="rowMouseOver(undefined)"
+            [ngClass]="rowClasses(row.id)">
+            <td *ngFor="let cell of row.cells"
+                class="au-body-cell"
+                [ngClass]="cellClasses(row.id)">
+                {{cell.value}}
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+@import 'helpers';
+
+$maximum: 10;
+$offset: .1;
+$unit: 'em';
+
+@mixin list-loop($classPrefix, $style)
+{
+    $index: .1;
+
+    @while $index <= $maximum
+    {
+        $indexPrefix: str-replace(to-string($index), '.', '_');
+        
+        #{$classPrefix + $indexPrefix}
+        {
+            #{$style}: #{$index + $unit};
+        }
+
+        $index: $index + $offset;
+    }
+}

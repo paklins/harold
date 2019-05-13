@@ -1,0 +1,33 @@
+.b
+{
+    display: flex;
+}
+
+.b-e
+{
+    flex: 1;
+}
+
+.b-v
+{
+    flex-direction: column;
+}
+
+.b-h
+{
+    flex-direction: row;
+}
+
+.b-ev
+{
+    @extend .b;
+    @extend .b-e;
+    @extend .b-v;
+}
+
+.b-eh
+{
+    @extend .b;
+    @extend .b-e;
+    @extend .b-h;
+}
