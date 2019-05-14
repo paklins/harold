@@ -5,8 +5,11 @@
         </div>
     </div> -->
 
-<table *ngIf="source" class="au-table-view">
-    <thead class="au-header">
+<table *ngIf="source" class="au-table-view"
+    #table
+    (scroll)="tableBodyScroll($event)">
+    <thead #tableHeader
+        class="au-header">
         <tr class="au-header-layout">
             <td *ngFor="let column of source.Columns"
                 class="au-header-column">
@@ -14,8 +17,8 @@
             </td>
         </tr>
     </thead>
-    <tbody class="au-body"
-        (scroll)="tableBodyScroll($event)">
+    <tbody #tableBody
+        class="au-body">
         <tr *ngFor="let row of Rows"
             class="au-row"
             (click)="rowSelect(row.id)"

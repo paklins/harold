@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Table } from '../../models/table';
 import { TableRow } from '../../models/table-row';
 
@@ -7,7 +7,7 @@ import { TableRow } from '../../models/table-row';
     templateUrl: './table-view.component.html',
     styleUrls: ['./table-view.component.scss']
 })
-export class TableViewComponent implements OnInit
+export class TableViewComponent implements OnInit, AfterViewInit
 {
     private hoveredRowId: number;
     private selectedRowId: number;
@@ -15,6 +15,15 @@ export class TableViewComponent implements OnInit
 
     @Input()
     public source: Table;
+
+    @ViewChild('table')
+    public table: ElementRef;
+
+    @ViewChild('tableHeader')
+    public theader: ElementRef;
+
+    @ViewChild('tableBody')
+    public tbody: ElementRef;
 
     public get Rows(): TableRow[]
     {
@@ -84,6 +93,26 @@ export class TableViewComponent implements OnInit
         {
             this.virtualRows = this.source.Rows.slice(0, 40);
         }
+    }
+
+    public ngAfterViewInit(): void
+    {
+        const headerHeight: number = this.theader.nativeElement.clientHeight;
+        const tableStyle: any = this.table.nativeElement.currentStyle 
+            || window.getComputedStyle(this.table.nativeElement);
+
+        if(tableStyle)
+        {
+            
+            this.theader.nativeElement.style.width =
+                `calc(100% 
+                    - ${tableStyle.marginLeft} 
+                    - ${tableStyle.marginRight}
+                    - ${tableStyle.borderLeftWidth} 
+                    - ${tableStyle.borderRightWidth})`;
+        }
+
+        this.tbody.nativeElement.style.marginTop = headerHeight + "px";
     }
 
     public tableBodyScroll(event: any): void

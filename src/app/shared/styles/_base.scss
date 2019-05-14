@@ -18,6 +18,16 @@
     flex-direction: row;
 }
 
+.b-g
+{
+    flex-grow: 1;
+}
+
+.b-ns
+{
+    flex-shrink: 0;
+}
+
 .b-ev
 {
     @extend .b;
