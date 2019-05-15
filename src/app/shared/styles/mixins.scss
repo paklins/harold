@@ -6,7 +6,7 @@ $unit: 'em';
 
 @mixin list-loop($classPrefix, $style)
 {
-    $index: .1;
+    $index: 0;
 
     @while $index <= $maximum
     {

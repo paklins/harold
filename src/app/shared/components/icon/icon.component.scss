@@ -1,0 +1,12 @@
+@import 'base';
+@import 'icons';
+
+.au-icon
+{
+    @extend .b;
+
+    .au-icon-layout
+    {
+        @extend .material-icons;
+    }
+}

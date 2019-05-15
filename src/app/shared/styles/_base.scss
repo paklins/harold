@@ -23,6 +23,11 @@
     flex-grow: 1;
 }
 
+.b-ng
+{
+    flex-grow: 0;
+}
+
 .b-ns
 {
     flex-shrink: 0;
@@ -40,4 +45,10 @@
     @extend .b;
     @extend .b-e;
     @extend .b-h;
+}
+
+.borderless
+{
+    border: none;
+    outline: none;
 }

@@ -4,32 +4,42 @@
             {{column.header}}
         </div>
     </div> -->
+<div class="au-table-view">
+    <table *ngIf="source" class="au-table"
+        #table
+        (scroll)="tableBodyScroll($event)">
+        <thead #tableHeader
+            class="au-header">
+            <tr class="au-header-layout">
+                <td *ngFor="let column of source.Columns"
+                    class="au-header-column">
+                    {{column.header}}
+                </td>
+            </tr>
+        </thead>
+        <tbody #tableBody
+            class="au-body">
+            <tr *ngFor="let row of Rows"
+                class="au-row"
+                (click)="rowSelect(row.id)"
+                (mouseover)="rowMouseOver(row.id)"
+                (mouseout)="rowMouseOver(undefined)"
+                [ngClass]="rowClasses(row.id)">
+                <td *ngFor="let cell of row.cells"
+                    class="au-body-cell"
+                    [ngClass]="cellClasses(row.id)">
+                    {{cell.value}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<table *ngIf="source" class="au-table-view"
-    #table
-    (scroll)="tableBodyScroll($event)">
-    <thead #tableHeader
-        class="au-header">
-        <tr class="au-header-layout">
-            <td *ngFor="let column of source.Columns"
-                class="au-header-column">
-                {{column.header}}
-            </td>
-        </tr>
-    </thead>
-    <tbody #tableBody
-        class="au-body">
-        <tr *ngFor="let row of Rows"
-            class="au-row"
-            (click)="rowSelect(row.id)"
-            (mouseover)="rowMouseOver(row.id)"
-            (mouseout)="rowMouseOver(undefined)"
-            [ngClass]="rowClasses(row.id)">
-            <td *ngFor="let cell of row.cells"
-                class="au-body-cell"
-                [ngClass]="cellClasses(row.id)">
-                {{cell.value}}
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="au-scroll-panel">
+        <au-spacer auFlexBlock>
+        </au-spacer>
+
+        <au-button icon="visibility"
+            text="test button">
+        </au-button>
+    </div>
+</div>

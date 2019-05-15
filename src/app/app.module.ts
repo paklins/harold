@@ -7,16 +7,20 @@ import { ComponentsModule } from './shared/components/components.module';
 import { FlexBlockDirective } from './shared/directives/flex-block.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FlexBlockDirective
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ComponentsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations:
+    [
+      AppComponent
+    ],
+    imports:
+    [
+        BrowserModule,
+        AppRoutingModule,
+        ComponentsModule
+    ],
+    providers: [],
+    bootstrap:
+    [
+        AppComponent
+    ]
 })
 export class AppModule { }

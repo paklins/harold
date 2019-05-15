@@ -1,0 +1,27 @@
+@import 'base';
+@import 'variables';
+
+.au-button
+{
+    @extend .b;
+    @extend .b-h;
+    @extend .b-ng;
+
+    .au-button-layout{
+        @extend .b;
+        @extend .borderless;
+        @extend .p-l-0;
+        @extend .m-0;
+        @extend .p-t-0_3;
+        @extend .p-b-0_3;
+        @extend .p-r-0_4;
+
+        align-items: center;
+
+        .au-button-icon,
+        .au-button-text
+        {
+            @extend .p-l-0_5;
+        }
+    }
+}

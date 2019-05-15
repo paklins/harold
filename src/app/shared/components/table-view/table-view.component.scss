@@ -6,91 +6,111 @@
 .au-table-view
 {
     @extend .b;
-    @extend .m-0_5;
+    @extend .b-v;
 
-    flex: 1 1 auto;
-    flex-direction: column;
-
-    border: .1em solid rgb(204, 204, 204);
-
-    overflow-x: scroll;
-
-    &::-webkit-scrollbar
-    {
-        width: 0;
-    }
-
-    .au-header
+    .au-table
     {
         @extend .b;
-        @extend .b-ns;
+        @extend .m-t-0_5;
         @extend .m-r-0_5;
+        @extend .m-l-0_5;
 
-        position: fixed;
-        border-bottom: 2px solid rgb(230, 230, 230);
+        flex: 1 1 auto;
+        flex-direction: column;
 
-        .au-header-layout{
-            @extend .b-eh;
+        border: .1em solid rgb(204, 204, 204);
 
-            .au-header-column
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar
+        {
+            width: 0;
+        }
+
+        .au-header
+        {
+            @extend .b;
+            @extend .b-ns;
+            @extend .m-r-0_5;
+
+            position: fixed;
+            border-bottom: 2px solid rgb(230, 230, 230);
+
+            .au-header-layout{
+                @extend .b-eh;
+
+                .au-header-column
+                {
+                    @extend .b-eh;
+                    @extend .p-1;
+                    @extend .bld;
+
+                    background: rgb(242, 242, 242);
+                }
+            }
+        }
+
+        .au-body
+        {
+            @extend .b;
+            @extend .b-v;
+            @extend .b-ns;
+
+            .au-row
             {
                 @extend .b-eh;
-                @extend .p-1;
-                @extend .bld;
 
-                background: rgb(242, 242, 242);
+                transition: 200ms background ease-out;
+
+                &:nth-child(odd)
+                {
+                    background: rgb(250, 250, 250);
+                    box-shadow: inset 0 1px 0 #e6e6e6, inset 0 -1px 0 #e6e6e6;
+                }
+
+
+                .au-body-cell
+                {
+                    @extend .b-ev;
+                    @extend .p-1;
+                }
+
+                &.au-body-row-hovered
+                {
+                    background: rgb(254, 242, 199);
+                    box-shadow: none;
+
+                    .au-body-cell-hovered
+                    {
+                        @extend .bld;
+                    }
+                }
+
+                &.au-body-row-selected
+                {
+                    background: rgb(253, 230, 143);
+
+                    .au-body-cell-selected
+                    {
+                        @extend .bld;
+                    }
+
+                    box-shadow: inset 0 0 0 1px rgb(250, 204, 31);
+                    border: none;
+                }
             }
         }
     }
 
-    .au-body
+    .au-scroll-panel
     {
         @extend .b;
-        @extend .b-v;
+        @extend .b-h;
+        @extend .b-g;
         @extend .b-ns;
 
-        .au-row
-        {
-            @extend .b-eh;
-
-            transition: 200ms background ease-out;
-
-            &:nth-child(odd)
-            {
-                background: rgb(250, 250, 250);
-                box-shadow: inset 0 1px 0 #e6e6e6, inset 0 -1px 0 #e6e6e6;
-            }
-
-
-            .au-body-cell
-            {
-                @extend .b-ev;
-                @extend .p-1;
-            }
-
-            &.au-body-row-hovered
-            {
-                background: rgb(254, 242, 199);
-                box-shadow: none;
-
-                .au-body-cell-hovered
-                {
-                    @extend .bld;
-                }
-            }
-
-            &.au-body-row-selected
-            {
-                background: rgb(253, 230, 143);
-
-                .au-body-cell-selected
-                {
-                    @extend .bld;
-                }
-
-                box-shadow: inset 0 0 0 1px rgb(250, 204, 31);
-                border: none;
-            }
-        }
+        @extend .m-r-0_5;
+        @extend .m-l-0_5;
+        @extend .m-b-0_5;
     }
 }

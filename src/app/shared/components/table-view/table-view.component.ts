@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Table } from '../../models/table';
 import { TableRow } from '../../models/table-row';
-import { start } from 'repl';
 
 @Component({
     selector: 'au-table-view',
@@ -55,7 +54,7 @@ export class TableViewComponent implements OnInit, AfterViewInit
                 if (nextRows.length)
                 {
                     this.virtualRows.splice(0, this.scrollMeasurement);
-                    this.virtualRows.concat(nextRows);
+                    this.virtualRows = this.virtualRows.concat(nextRows);
 
                     rowId = nextRows[0].id;
                 }
@@ -79,14 +78,12 @@ export class TableViewComponent implements OnInit, AfterViewInit
                 const prevRows: TableRow[] = this.source.findRowById(firstVirtualRow.id - 1,
                     this.scrollMeasurement);
 
-                if (prevRows)
+                if (prevRows.length)
                 {
-                    const startIndex: number = this.virtualRows.length - 1 - this.scrollMeasurement;
+                    this.virtualRows = [].concat(prevRows,
+                        this.virtualRows.slice(this.scrollMeasurement -1));
 
-                    this.virtualRows.splice(startIndex, this.scrollMeasurement);
-                    this.virtualRows.unshift(prevRows);
-
-                    rowId = prevRow.id;
+                    rowId = this.virtualRows[this.virtualRows.length-1].id;
                 }
             }
         }
@@ -127,16 +124,24 @@ export class TableViewComponent implements OnInit, AfterViewInit
         const scrollableElement: any = event.target;
         const currentScroll: number = scrollableElement.clientHeight + scrollableElement.scrollTop;
 
+        let scrollResult: number;
+        let scrollTop: number = 1;
+
+        this.hoveredRowId = undefined;
+
         if(scrollableElement.scrollTop === 0)
         {
-            if(this.movePrevVirtualRow() !== undefined)
-            {
-                scrollableElement.scrollTop = 1;
-            }
+            scrollResult = this.movePrevVirtualRow();
         }
         else if(currentScroll === scrollableElement.scrollHeight)
         {
-            this.moveNextVirtualRow();
+            scrollResult = this.moveNextVirtualRow();
+            scrollTop = scrollableElement.scrollHeight - 1;
+        }
+
+        if(scrollResult !== undefined)
+        {
+            scrollableElement.scrollTop = scrollTop;
         }
     }
 
