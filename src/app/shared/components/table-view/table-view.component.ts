@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Table } from '../../models/table';
 import { TableRow } from '../../models/table-row';
+import { start } from 'repl';
 
 @Component({
     selector: 'au-table-view',
@@ -12,6 +13,8 @@ export class TableViewComponent implements OnInit, AfterViewInit
     private hoveredRowId: number;
     private selectedRowId: number;
     private virtualRows: TableRow[];
+
+    private scrollMeasurement: number = 3;
 
     @Input()
     public source: Table;
@@ -46,14 +49,15 @@ export class TableViewComponent implements OnInit, AfterViewInit
 
             if (lastVirtualRow && lastRow && lastVirtualRow.id < lastRow.id)
             {
-                const nextRow: TableRow = this.source.findRowById(lastVirtualRow.id + 1);
+                const nextRows: TableRow[] = this.source.findRowById(
+                    lastVirtualRow.id + 1, this.scrollMeasurement);
 
-                if (nextRow)
+                if (nextRows.length)
                 {
-                    this.virtualRows.splice(0, 1);
-                    this.virtualRows.push(nextRow);
+                    this.virtualRows.splice(0, this.scrollMeasurement);
+                    this.virtualRows.concat(nextRows);
 
-                    rowId = nextRow.id;
+                    rowId = nextRows[0].id;
                 }
             }
         }
@@ -72,12 +76,15 @@ export class TableViewComponent implements OnInit, AfterViewInit
 
             if (firstVirtualRow && firstRow && firstVirtualRow.id > firstRow.id)
             {
-                const prevRow: TableRow = this.source.findRowById(firstVirtualRow.id - 1);
+                const prevRows: TableRow[] = this.source.findRowById(firstVirtualRow.id - 1,
+                    this.scrollMeasurement);
 
-                if (prevRow)
+                if (prevRows)
                 {
-                    this.virtualRows.splice(this.virtualRows.length - 1, 1);
-                    this.virtualRows.unshift(prevRow);
+                    const startIndex: number = this.virtualRows.length - 1 - this.scrollMeasurement;
+
+                    this.virtualRows.splice(startIndex, this.scrollMeasurement);
+                    this.virtualRows.unshift(prevRows);
 
                     rowId = prevRow.id;
                 }

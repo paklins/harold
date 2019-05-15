@@ -69,17 +69,12 @@ export class Table
         this.columns.push(column);
     }
 
-    public findRowById(id: number): TableRow
+    public findRowById(id: number, length: number = 1): TableRow[]
     {
-        let row: TableRow;
-        const rowIndex: number = this.rows.findIndex(row => row.id === id);
+        let maxRows: number = id + length;
+        const rows: TableRow[] = this.rows.filter(row => row.id >= id && row.id < maxRows);
 
-        if(rowIndex !== undefined)
-        {
-            row = this.rows[rowIndex];
-        }
-
-        return row;
+        return rows;
     }
 
     public addRow(row: any): void
