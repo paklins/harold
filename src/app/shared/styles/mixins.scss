@@ -4,6 +4,40 @@ $maximum: 10;
 $offset: .1;
 $unit: 'em';
 
+@mixin flex($grow: 1, $shrink: 0, $basis: auto, $direction: column)
+{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: $direction;
+    -moz-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+    flex-direction: $direction;
+
+    -webkit-flex-basis: $basis;
+    -moz-flex-basis: $basis;
+    -ms-flex-basis: $basis;
+    flex-basis: $basis;
+}
+
+@mixin justify-content($justify: center) {
+    -webkit-justify-content: $justify;
+    -moz-justify-content: $justify;
+    -ms-justify-content: $justify;
+    justify-content: $justify;
+    -ms-flex-pack: $justify;
+}
+
+@mixin align-items($align: center) {
+    -webkit-align-items: $align;
+    -moz-align-items: $align;
+    -ms-align-items: $align;
+    align-items: $align;
+}
+
 @mixin list-loop($classPrefix, $style)
 {
     $index: 0;
@@ -18,5 +52,31 @@ $unit: 'em';
         }
 
         $index: $index + $offset;
+    }
+}
+
+@mixin border($top: 1, $right: 1, $bottom: 1, $left: 1, $style: 'solid', $color: 'lightgrey')
+{
+
+    @if $top > 0 and $right > 0 and $bottom > 0 and $left > 0
+    {
+        border: #{max($top,$right,$bottom,$left) + 'px'} $style $color;
+    }
+    @else {
+        @if $top > 0 {
+            border-top: #{$top + 'px'} $style $color;
+        }
+
+        @if $right > 0 {
+            border-right: #{$right + 'px'} $style $color;
+        }
+
+        @if $bottom > 0 {
+            border-bottom: #{$right + 'px'} $style $color;
+        }
+
+        @if $left > 0 {
+            border-left: #{$left + 'px'} $style $color;
+        }
     }
 }

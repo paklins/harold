@@ -11,9 +11,28 @@ export class ButtonComponent implements OnInit
     public icon: string;
 
     @Input()
+    public noSpace: boolean;
+
+    @Input()
+    public transparent: boolean;
+
+    @Input()
     public text: string;
 
     constructor(){}
 
-    ngOnInit(){}
+    ngOnInit()
+    {}
+
+    public layoutClasses(): object
+    {
+        let classes: object = 
+        {
+            'au-button-layout': !this.noSpace,
+            'au-layout-no-space': this.noSpace,
+            'au-layout-transparent': this.transparent
+        };
+
+        return classes;
+    }
 }

@@ -1,27 +1,44 @@
 @import 'base';
 @import 'variables';
+@import 'mixins';
 
 .au-button
 {
-    @extend .b;
-    @extend .b-h;
-    @extend .b-ng;
+    @include flex($grow: 0, $direction: row);
+
+    .au-button-layout-template
+    {
+        @extend .b;
+        @extend .m-0;
+        @extend .borderless;
+
+        align-items: center;
+
+        @include border(0, 1, 1, 1, solid, lightgrey);
+    }
+
+    .au-layout-transparent
+    {
+        background: transparent;
+    }
 
     .au-button-layout{
-        @extend .b;
-        @extend .borderless;
+        @extend .au-button-layout-template;
         @extend .p-l-0;
-        @extend .m-0;
         @extend .p-t-0_3;
         @extend .p-b-0_3;
         @extend .p-r-0_4;
-
-        align-items: center;
 
         .au-button-icon,
         .au-button-text
         {
             @extend .p-l-0_5;
         }
+    }
+
+    .au-layout-no-space
+    {
+        @extend .au-button-layout-template;
+        @extend .p-0;
     }
 }
