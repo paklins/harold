@@ -52,3 +52,15 @@
     border: none;
     outline: none;
 }
+
+.hide-scrollbar
+{
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar
+    {
+        width: 0;
+    }
+}

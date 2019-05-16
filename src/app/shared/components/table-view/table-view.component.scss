@@ -6,7 +6,7 @@
 .au-table-view
 {
     @extend .b;
-    @extend .b-v;
+    @extend .b-ev;
 
     .au-table
     {
@@ -14,18 +14,12 @@
         @extend .m-t-0_5;
         @extend .m-r-0_5;
         @extend .m-l-0_5;
+        @extend .hide-scrollbar;
 
         flex: 1 1 auto;
         flex-direction: column;
 
         border: .1em solid rgb(204, 204, 204);
-
-        overflow-x: scroll;
-
-        &::-webkit-scrollbar
-        {
-            width: 0;
-        }
 
         .au-header
         {
