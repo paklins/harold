@@ -1,6 +1,6 @@
 <div class="au-button">
     <button [ngClass]="layoutClasses()">
-        <au-icon *ngIf="icon" [source]="icon" class="au-button-icon"></au-icon>
+        <au-icon *ngIf="icon" [source]="icon" [ngClass]="iconClasses()"></au-icon>
 
         <div *ngIf="text" class="au-button-text">{{text}}</div>
     </button>

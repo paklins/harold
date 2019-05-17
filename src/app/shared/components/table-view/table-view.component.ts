@@ -10,6 +10,7 @@ import { TableRow } from '../../models/table-row';
 export class TableViewComponent implements OnInit, AfterViewInit
 {
     private hoveredRowId: number;
+    private hoveredHeaderColumnId: number;
     private selectedRowId: number;
     private virtualRows: TableRow[];
 
@@ -143,6 +144,11 @@ export class TableViewComponent implements OnInit, AfterViewInit
         {
             scrollableElement.scrollTop = scrollTop;
         }
+    }
+
+    public headerCellMouseOver(columnId: number): void
+    {
+        this.hoveredHeaderColumnId = columnId;
     }
 
     public rowMouseOver(rowId: number): void

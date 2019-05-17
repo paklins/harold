@@ -1,96 +1,106 @@
 @import 'base';
-@import 'variables';
-@import 'fonts';
-@import 'icons';
 
 .au-table-view
 {
-    @extend .b;
-    @extend .b-ev;
+    @include flex();
 
     .au-table
     {
-        @extend .b;
-        @extend .m-t-0_5;
-        @extend .m-r-0_5;
-        @extend .m-l-0_5;
-        @extend .hide-scrollbar;
+        $table-margin: .5;
 
-        flex: 1 1 auto;
-        flex-direction: column;
-
-        border: .1em solid rgb(204, 204, 204);
+        @include flex($shrink: 1);
+        @include margin($top: $table-margin, $right: $table-margin, $left: $table-margin);
+        @include scroll-view(overflow-x);
+        @include border($all: $border-width, $color: $table-view-border-color);
 
         .au-header
         {
-            @extend .b;
-            @extend .b-ns;
-            @extend .m-r-0_5;
+            $table-header-border-width: .2;
+
+            @include flex($shrink: 1);
+            @include margin($right: $table-margin);
+            @include border($bottom: $table-header-border-width, $color: $table-view-header-border-color);
 
             position: fixed;
-            border-bottom: 2px solid rgb(230, 230, 230);
 
             .au-header-layout{
                 @extend .b-eh;
 
                 .au-header-column
                 {
-                    @extend .b-eh;
-                    @extend .p-1;
-                    @extend .bld;
+                    @include flex($shrink: 1, $basis: 0, $direction: row, $align: center);
+                    @include padding($all: 1);
+                    @include border($right: .01);
 
-                    background: rgb(242, 242, 242);
+                    &:last-child
+                    {
+                        @include border($all: 0);
+                    }
+
+                    background: $table-view-header-background;
+                    font-weight: bold;
+
+                    .au-header-text
+                    {
+                        @include flex();
+                    }
                 }
             }
         }
 
         .au-body
         {
-            @extend .b;
-            @extend .b-v;
-            @extend .b-ns;
+            @include flex($shrink: 0);
 
             .au-row
             {
-                @extend .b-eh;
-
-                transition: 200ms background ease-out;
+                @include flex($direction: row);
+                @include transition(200ms background ease-out);
 
                 &:nth-child(odd)
                 {
-                    background: rgb(250, 250, 250);
-                    box-shadow: inset 0 1px 0 #e6e6e6, inset 0 -1px 0 #e6e6e6;
+                    @include box-shadow(
+                        inset 0 1px 0 $table-view-row-inside-border-color, 
+                        inset 0 -1px 0 $table-view-row-inside-border-color);
+                    
+                    background: $table-view-odd-row-background;
                 }
-
 
                 .au-body-cell
                 {
-                    @extend .b-ev;
-                    @extend .p-1;
+                    @include flex($shrink: 1, $basis: 0);
+                    @include padding($all: 1);
+
+                    @include border($right: .01);
+
+                    &:last-child
+                    {
+                        @include border($all: 0);
+                    }
                 }
 
                 &.au-body-row-hovered
                 {
-                    background: rgb(254, 242, 199);
-                    box-shadow: none;
+                    @include box-shadow(none);
+                    background: $table-view-row-hovered-background;
 
                     .au-body-cell-hovered
                     {
-                        @extend .bld;
+                        font-weight: bold;
                     }
                 }
 
                 &.au-body-row-selected
                 {
-                    background: rgb(253, 230, 143);
+                    @include box-shadow(inset 0 0 0 1px $table-view-row-selected-inside-border-color);
+                    @include border($all: 0);
+
+                    background: $table-view-row-selected-background;
 
                     .au-body-cell-selected
                     {
-                        @extend .bld;
+                        font-weight: bold;
                     }
-
-                    box-shadow: inset 0 0 0 1px rgb(250, 204, 31);
-                    border: none;
                 }
             }
         }
@@ -98,13 +108,9 @@
 
     .au-scroll-panel
     {
-        @extend .b;
-        @extend .b-h;
-        @extend .b-g;
-        @extend .b-ns;
+        $panel-margin: .5;
 
-        @extend .m-r-0_5;
-        @extend .m-l-0_5;
-        @extend .m-b-0_5;
+        @include flex($direction: row);
+        @include margin($right: $panel-margin, $left: $panel-margin, $bottom: $panel-margin);
     }
 }

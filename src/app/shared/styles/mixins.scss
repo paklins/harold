@@ -4,7 +4,12 @@ $maximum: 10;
 $offset: .1;
 $unit: 'em';
 
-@mixin flex($grow: 1, $shrink: 0, $basis: auto, $direction: column)
+@mixin flex(
+    $grow: 1, 
+    $shrink: 0, 
+    $basis: auto, 
+    $direction: column,
+    $align: stretch)
 {
     display: -webkit-box;
     display: -moz-box;
@@ -17,10 +22,25 @@ $unit: 'em';
     -ms-flex-direction: $direction;
     flex-direction: $direction;
 
+    -webkit-flex-grow: $grow;
+    -moz-flex-grow: $grow;
+    -ms-flex-grow: $grow;
+    flex-grow: $grow;
+
+    -webkit-flex-shrink: $shrink;
+    -moz-flex-shrink: $shrink;
+    -ms-flex-shrink: $shrink;
+    flex-shrink: $shrink;
+
     -webkit-flex-basis: $basis;
     -moz-flex-basis: $basis;
     -ms-flex-basis: $basis;
     flex-basis: $basis;
+
+    -webkit-align-items: $align;
+    -moz-align-items: $align;
+    -ms-align-items: $align;
+    align-items: $align;
 }
 
 @mixin justify-content($justify: center) {
@@ -55,28 +75,161 @@ $unit: 'em';
     }
 }
 
-@mixin border($top: 1, $right: 1, $bottom: 1, $left: 1, $style: 'solid', $color: 'lightgrey')
+@mixin border-direction($direction, $value, $measurement, $style, $color)
 {
-
-    @if $top > 0 and $right > 0 and $bottom > 0 and $left > 0
+    @if $value > 0 
     {
-        border: #{max($top,$right,$bottom,$left) + 'px'} $style $color;
+        #{$direction}: $value + $measurement $style $color;
+    }
+    @else
+    {
+        #{$direction}: none;
+    }
+}
+
+@mixin border($top: 0,
+              $right: 0,
+              $bottom: 0,
+              $left: 0,
+              $style: solid,
+              $color: $border-color,
+              $all: none)
+{
+    outline: none;
+
+    @if $all != none
+    {
+        @if $all == 0
+        {
+            border: none;
+        }
+        @else
+        {
+            @include border-direction(border, $all, $border-measurement, $style, $color);
+        }
+    }
+    @else if $top > 0 and $right > 0 and $bottom > 0 and $left > 0
+    {
+        border: max($top,$right,$bottom,$left) + $border-measurement $style $color;
+    }
+    @else if $top == 0 and $right == 0 and $bottom == 0 and $left == 0
+    {
+        border: none;
+    }
+    @else
+    {
+        @include border-direction(border-top, $top, $border-measurement, $style, $color);
+        @include border-direction(border-right, $right, $border-measurement, $style, $color);
+        @include border-direction(border-bottom, $bottom, $border-measurement, $style, $color);
+        @include border-direction(border-left, $left, $border-measurement, $style, $color);
+    }
+}
+
+@mixin direction-style(
+    $property,
+    $measurement,
+    $all,
+    $top: 0, 
+    $right: 0, 
+    $bottom: 0, 
+    $left: 0,)
+{
+    @if $all != none
+    {
+        @if $all == 0
+        {
+            #{$property}: 0;
+        }
+        @else
+        {
+            #{$property}: $all + $measurement;
+        }
+    }
+    @else if $top > 0 and $right > 0 and $bottom > 0 and $left > 0
+    {
+        #{$property}: $top + $measurement $right + $measurement $bottom + $measurement $left + $measurement;
+    }
+    @else if $top == 0 and $right == 0 and $bottom == 0 and $left == 0
+    {
+        #{$property}: 0;
     }
     @else {
         @if $top > 0 {
-            border-top: #{$top + 'px'} $style $color;
+            #{$property + '-top'}: $top + $measurement;
         }
 
         @if $right > 0 {
-            border-right: #{$right + 'px'} $style $color;
+            #{$property + '-right'}: $right + $measurement;
         }
 
         @if $bottom > 0 {
-            border-bottom: #{$right + 'px'} $style $color;
+            #{$property + '-bottom'}: $right + $measurement;
         }
 
         @if $left > 0 {
-            border-left: #{$left + 'px'} $style $color;
+            #{$property + '-left'}: $left + $measurement;
         }
     }
+}
+
+@mixin margin(
+    $top: 0, 
+    $right: 0, 
+    $bottom: 0, 
+    $left: 0,
+    $all: none)
+{
+    @include direction-style(
+        margin, 
+        $direction-measurement,
+        $all,
+        $top, 
+        $right, 
+        $bottom, 
+        $left);
+}
+
+@mixin padding(
+    $top: 0, 
+    $right: 0, 
+    $bottom: 0, 
+    $left: 0,
+    $all: none)
+{
+    @include direction-style(
+        padding,
+        $direction-measurement, 
+        $all,
+        $top, 
+        $right, 
+        $bottom, 
+        $left);
+}
+
+@mixin scroll-view($direction: overflow, $width: 0)
+{
+    #{$direction}: scroll;
+    scrollbar-width: $width;
+    -ms-overflow-style: $width;
+
+    &::-webkit-scrollbar
+    {
+        width: $width;
+    }
+}
+
+@mixin transition($args...)
+{
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin box-shadow($shadow...)
+{
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
 }

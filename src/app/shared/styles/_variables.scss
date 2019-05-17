@@ -1,5 +1,19 @@
 @import 'mixins';
 
+$border-measurement: em;
+$direction-measurement: em;
+$border-width: .1;
+
+$border-color: lightgrey;
+$table-view-border-color: rgb(204, 204, 204);
+$table-view-header-border-color: rgb(230, 230, 230);
+$table-view-header-background: rgb(242, 242, 242);
+$table-view-odd-row-background: rgb(250, 250, 250);
+$table-view-row-inside-border-color: #e6e6e6;
+$table-view-row-hovered-background: rgb(254, 242, 199);
+$table-view-row-selected-background: rgb(253, 230, 143);
+$table-view-row-selected-inside-border-color: rgb(253, 230, 143);
+
 .p-1em
 {
     padding: 1em;

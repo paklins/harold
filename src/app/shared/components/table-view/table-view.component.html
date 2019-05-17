@@ -12,8 +12,18 @@
             class="au-header">
             <tr class="au-header-layout">
                 <td *ngFor="let column of source.Columns"
-                    class="au-header-column">
-                    {{column.header}}
+                    class="au-header-column"
+                    (mouseover)="headerCellMouseOver(column.id)"
+                    (mouseout)="headerCellMouseOver(undefined)">
+                    <div class="au-header-text">{{column.header}}</div>
+
+                    <au-button 
+                            icon="sort"
+                            [noSpace]="true"
+                            [transparent]="true"
+                            [hidden]="hoveredHeaderColumnId != column.id"
+                            [rotatedIcon]="true">
+                    </au-button>
                 </td>
             </tr>
         </thead>

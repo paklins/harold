@@ -19,6 +19,12 @@ export class ButtonComponent implements OnInit
     @Input()
     public text: string;
 
+    @Input()
+    public hidden: boolean;
+
+    @Input()
+    public rotatedIcon: boolean;
+
     constructor(){}
 
     ngOnInit()
@@ -30,7 +36,19 @@ export class ButtonComponent implements OnInit
         {
             'au-button-layout': !this.noSpace,
             'au-layout-no-space': this.noSpace,
-            'au-layout-transparent': this.transparent
+            'au-layout-transparent': this.transparent,
+            'au-layout-hidden': this.hidden
+        };
+
+        return classes;
+    }
+
+    public iconClasses(): object
+    {
+        let classes: object = 
+        {
+            'au-button-icon': true,
+            'au-button-rotated-icon': this.rotatedIcon
         };
 
         return classes;

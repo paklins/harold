@@ -1,6 +1,4 @@
 @import 'base';
-@import 'variables';
-@import 'mixins';
 
 .au-button
 {
@@ -8,13 +6,9 @@
 
     .au-button-layout-template
     {
-        @extend .b;
-        @extend .m-0;
-        @extend .borderless;
-
-        align-items: center;
-
-        @include border(0, 1, 1, 1, solid, lightgrey);
+        @include flex($grow: 0, $direction: row);
+        @include margin();
+        @include border($top: 0);
     }
 
     .au-layout-transparent
@@ -24,21 +18,28 @@
 
     .au-button-layout{
         @extend .au-button-layout-template;
-        @extend .p-l-0;
-        @extend .p-t-0_3;
-        @extend .p-b-0_3;
-        @extend .p-r-0_4;
+        @include padding(.3, .4, .3, 0);
 
         .au-button-icon,
         .au-button-text
         {
-            @extend .p-l-0_5;
+            @include padding($left: .5);
+        }
+
+        .au-button-rotated-icon
+        {
+            @include rotate(180);
         }
     }
 
     .au-layout-no-space
     {
         @extend .au-button-layout-template;
-        @extend .p-0;
+        @include padding();
+    }
+
+    .au-layout-hidden
+    {
+        visibility: hidden;
     }
 }

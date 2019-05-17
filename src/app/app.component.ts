@@ -27,11 +27,12 @@ export class AppComponent
 
         this.table.addColumn("test");
         this.table.addColumn("test2");
+        this.table.addColumn("test3");
 
         let data: any[] = [];
 
-        for (let index = 1; index < 1261; index+=2) {
-            data.push({ "test": index, "test2": index + 1 });
+        for (let index = 1; index < 301; index+=3) {
+            data.push({ "test": index, "test2": index + 1, "test3": index + 2 });
         }
 
         this.table.upload(data);
