@@ -3,7 +3,7 @@
 
 .au-icon
 {
-    @extend .b;
+    @include flex($grow: 0);
 
     .au-icon-layout
     {

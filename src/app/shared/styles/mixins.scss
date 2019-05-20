@@ -1,8 +1,4 @@
-@import 'helpers';
-
-$maximum: 10;
-$offset: .1;
-$unit: 'em';
+@import 'functions';
 
 @mixin flex(
     $grow: 1, 
@@ -58,23 +54,6 @@ $unit: 'em';
     align-items: $align;
 }
 
-@mixin list-loop($classPrefix, $style)
-{
-    $index: 0;
-
-    @while $index <= $maximum
-    {
-        $indexPrefix: str-replace(to-string($index), '.', '_');
-        
-        #{$classPrefix + $indexPrefix}
-        {
-            #{$style}: #{$index + $unit};
-        }
-
-        $index: $index + $offset;
-    }
-}
-
 @mixin border-direction($direction, $value, $measurement, $style, $color)
 {
     @if $value > 0 
@@ -105,12 +84,12 @@ $unit: 'em';
         }
         @else
         {
-            @include border-direction(border, $all, $border-measurement, $style, $color);
+            @include border-direction(border, $all, $main-measurement, $style, $color);
         }
     }
     @else if $top > 0 and $right > 0 and $bottom > 0 and $left > 0
     {
-        border: max($top,$right,$bottom,$left) + $border-measurement $style $color;
+        border: max($top,$right,$bottom,$left) + $main-measurement $style $color;
     }
     @else if $top == 0 and $right == 0 and $bottom == 0 and $left == 0
     {
@@ -118,10 +97,10 @@ $unit: 'em';
     }
     @else
     {
-        @include border-direction(border-top, $top, $border-measurement, $style, $color);
-        @include border-direction(border-right, $right, $border-measurement, $style, $color);
-        @include border-direction(border-bottom, $bottom, $border-measurement, $style, $color);
-        @include border-direction(border-left, $left, $border-measurement, $style, $color);
+        @include border-direction(border-top, $top, $main-measurement, $style, $color);
+        @include border-direction(border-right, $right, $main-measurement, $style, $color);
+        @include border-direction(border-bottom, $bottom, $main-measurement, $style, $color);
+        @include border-direction(border-left, $left, $main-measurement, $style, $color);
     }
 }
 
@@ -181,7 +160,7 @@ $unit: 'em';
 {
     @include direction-style(
         margin, 
-        $direction-measurement,
+        $main-measurement,
         $all,
         $top, 
         $right, 
@@ -198,7 +177,7 @@ $unit: 'em';
 {
     @include direction-style(
         padding,
-        $direction-measurement, 
+        $main-measurement, 
         $all,
         $top, 
         $right, 

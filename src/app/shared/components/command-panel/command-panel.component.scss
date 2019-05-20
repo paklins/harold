@@ -1,0 +1,23 @@
+@import 'base';
+
+.au-command-panel
+{
+    @include border(
+        $left: $border-width,
+        $bottom: $border-width,
+        $right: $border-width);
+
+    @include padding($all: $command-panel-padding);
+}
+
+.au-command-panel-vertical
+{
+    @extend .au-command-panel;
+    @include flex($direction: column);
+}
+
+.au-command-panel-horizontal
+{
+    @extend .au-command-panel;
+    @include flex($direction: row);
+}

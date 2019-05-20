@@ -1,0 +1,9 @@
+@import 'functions';
+
+.theme-wrapper {
+    --tableHeaderBackground: 
+}
+
+$theme-variables: (
+    --tableHeaderBackground: theme-var(--tableHeaderBackground)
+);

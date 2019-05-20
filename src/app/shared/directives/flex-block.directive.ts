@@ -20,7 +20,7 @@ export class FlexBlockDirective implements OnInit
         this.element.nativeElement.style.flex = 1;
         this.element.nativeElement.style.display="flex";
 
-        if(this.auFlexBlock === "vertical")
+        if(this.auFlexBlock === "column")
         {
             this.element.nativeElement.style.flexDirection = "column";
         }

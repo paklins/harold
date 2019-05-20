@@ -6,31 +6,42 @@
 
     .au-table
     {
-        $table-margin: .5;
-
         @include flex($shrink: 1);
-        @include margin($top: $table-margin, $right: $table-margin, $left: $table-margin);
+        @include margin(
+            $top: $table-view-margin,
+            $right: $table-view-margin,
+            $left: $table-view-margin);
+
         @include scroll-view(overflow-x);
-        @include border($all: $border-width, $color: $table-view-border-color);
+        @include border(
+            $all: $border-width, 
+            $color: $table-view-border-color);
 
         .au-header
         {
-            $table-header-border-width: .2;
-
             @include flex($shrink: 1);
-            @include margin($right: $table-margin);
-            @include border($bottom: $table-header-border-width, $color: $table-view-header-border-color);
+            @include margin($right: $table-view-margin);
+            @include border(
+                $bottom: $table-view-header-border-bottom-width,
+                $color: $table-view-header-border-color);
+
+            color: $table-view-header-foreground;
 
             position: fixed;
 
             .au-header-layout{
-                @extend .b-eh;
+                @include flex($direction: row);
 
                 .au-header-column
                 {
-                    @include flex($shrink: 1, $basis: 0, $direction: row, $align: center);
-                    @include padding($all: 1);
-                    @include border($right: .01);
+                    @include flex(
+                        $shrink: 1, 
+                        $basis: 0,
+                        $direction: row,
+                        $align: center);
+
+                    @include padding($all: $table-view-inner-padding);
+                    @include border($right: $table-view-inner-border-width);
 
                     &:last-child
                     {
@@ -38,7 +49,7 @@
                     }
 
                     background: $table-view-header-background;
-                    font-weight: bold;
+                    font-weight: $font-header-weight;
 
                     .au-header-text
                     {
@@ -60,8 +71,8 @@
                 &:nth-child(odd)
                 {
                     @include box-shadow(
-                        inset 0 1px 0 $table-view-row-inside-border-color, 
-                        inset 0 -1px 0 $table-view-row-inside-border-color);
+                        inset 0 ($border-width + $main-measurement) $table-view-row-inside-border-color, 
+                        inset 0 (- $border-width + $main-measurement) 0 $table-view-row-inside-border-color);
                     
                     background: $table-view-odd-row-background;
                 }
@@ -69,9 +80,9 @@
                 .au-body-cell
                 {
                     @include flex($shrink: 1, $basis: 0);
-                    @include padding($all: 1);
+                    @include padding($all: $table-view-inner-padding);
 
-                    @include border($right: .01);
+                    @include border($right: $table-view-inner-border-width);
 
                     &:last-child
                     {
@@ -82,17 +93,34 @@
                 &.au-body-row-hovered
                 {
                     @include box-shadow(none);
+
                     background: $table-view-row-hovered-background;
+
+                    @include box-shadow(inset 0 0 0
+                        ($table-view-inner-border-width + $main-measurement) 
+                        $table-view-row-hovered-cell-border-color);
 
                     .au-body-cell-hovered
                     {
-                        font-weight: bold;
+                        @include border(
+                            $right: $table-view-inner-border-width,
+                            $color: $table-view-row-hovered-cell-border-color);
+
+                        font-weight: $font-header-weight;
+
+                        &:last-child
+                        {
+                            @include border($all: 0);
+                        }
                     }
                 }
 
                 &.au-body-row-selected
                 {
-                    @include box-shadow(inset 0 0 0 1px $table-view-row-selected-inside-border-color);
+                    @include box-shadow(inset 0 0 0
+                        ($table-view-inner-border-width + $main-measurement) 
+                        $table-view-row-selected-inside-border-color);
+
                     @include border($all: 0);
 
                     background: $table-view-row-selected-background;
@@ -100,6 +128,14 @@
                     .au-body-cell-selected
                     {
                         font-weight: bold;
+                        @include border(
+                            $right: $table-view-inner-border-width, 
+                            $color: $table-view-row-selected-cell-border-color);
+
+                        &:last-child
+                        {
+                            @include border($all: 0);
+                        }
                     }
                 }
             }
@@ -108,9 +144,10 @@
 
     .au-scroll-panel
     {
-        $panel-margin: .5;
-
         @include flex($direction: row);
-        @include margin($right: $panel-margin, $left: $panel-margin, $bottom: $panel-margin);
+        @include margin(
+            $right: $table-view-navigation-panel-margin, 
+            $left: $table-view-navigation-panel-margin, 
+            $bottom: $table-view-navigation-panel-margin);
     }
 }

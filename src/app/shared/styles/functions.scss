@@ -1,3 +1,5 @@
+@import 'fonts';
+
 @function to-string($value) {
     @return inspect($value);
 }
@@ -16,4 +18,13 @@
     }
 
     @return $string;
+}
+
+@function em($pixels, $context: $font-size)
+{
+    @return ($pixels / $context);
+}
+
+@function theme-var($variable) {
+    @return map-get($theme-variables, $variable);
 }
