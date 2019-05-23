@@ -1,0 +1,6 @@
+@import 'mixins/base';
+
+::ng-deep
+{
+    @include generate-theme('default');
+}

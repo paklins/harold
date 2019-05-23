@@ -1,4 +1,5 @@
 @import 'base';
+@import 'theme';
 
 .au-table-view
 {
@@ -15,7 +16,7 @@
         @include scroll-view(overflow-x);
         @include border(
             $all: $border-width, 
-            $color: $table-view-border-color);
+            $color: theme-var(tableHeaderBorderColor));
 
         .au-header
         {
@@ -23,9 +24,9 @@
             @include margin($right: $table-view-margin);
             @include border(
                 $bottom: $table-view-header-border-bottom-width,
-                $color: $table-view-header-border-color);
+                $color: theme-var(tableHeaderBorderColor));
 
-            color: $table-view-header-foreground;
+            @include theme-value(color, tableHeaderForeground);
 
             position: fixed;
 
@@ -48,7 +49,7 @@
                         @include border($all: 0);
                     }
 
-                    background: $table-view-header-background;
+                    background: theme-var(tableHeaderBackground);
                     font-weight: $font-header-weight;
 
                     .au-header-text
@@ -71,10 +72,10 @@
                 &:nth-child(odd)
                 {
                     @include box-shadow(
-                        inset 0 ($border-width + $main-measurement) $table-view-row-inside-border-color, 
-                        inset 0 (- $border-width + $main-measurement) 0 $table-view-row-inside-border-color);
+                        inset 0 ($border-width + $main-measurement) theme-var(tableHeaderBorderColor), 
+                        inset 0 (- $border-width + $main-measurement) 0 theme-var(tableHeaderBorderColor));
                     
-                    background: $table-view-odd-row-background;
+                    @include theme-value(background, tableOddRowBackground);
                 }
 
                 .au-body-cell
@@ -94,7 +95,7 @@
                 {
                     @include box-shadow(none);
 
-                    background: $table-view-row-hovered-background;
+                    @include theme-value(background, tableHoveredRowBackground);
 
                     @include box-shadow(inset 0 0 0
                         ($table-view-inner-border-width + $main-measurement) 

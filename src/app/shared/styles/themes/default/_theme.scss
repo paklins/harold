@@ -1,0 +1,14 @@
+$name: 'default';
+
+.default-theme
+{
+    --tableHeaderBackground: rgb(242, 242, 242);
+    --tableHeaderForeground: #000;
+    --tableHeaderBorderColor: rgb(230, 230, 230);
+    --tableOddRowBackground: rgb(250, 250, 250);
+    --tableHoveredRowBackground: rgb(254, 242, 199);
+};
+
+$default-theme-variables: (
+    --name: white
+);

@@ -1,0 +1,13 @@
+@import "themes/default/theme";
+
+@mixin generate-theme($name)
+{
+    #{'.' + $name + '-theme'}{ 
+        color: white;
+
+        @each $key, $value in $default-theme-variables
+        {
+            #{$key}: '123';
+        }
+    }
+}

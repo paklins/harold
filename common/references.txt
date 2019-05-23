@@ -1,2 +1,3 @@
 https://github.com/RubenVermeulen/generate-trusted-ssl-certificate
 https://medium.com/@rubenvermeulen/running-angular-cli-over-https-with-a-trusted-certificate-4a0d5f92747a
+https://habr.com/ru/company/otus/blog/452986/

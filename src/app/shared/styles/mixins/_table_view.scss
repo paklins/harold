@@ -1,20 +1,7 @@
-$border-color: #85A6FA; //lightgrey;
-$table-view-border-color: #85A6FA;//rgb(204, 204, 204);
-$table-view-header-border-color: #85A6FA;//rgb(230, 230, 230);
-$table-view-header-foreground: white;
-$table-view-header-background: #8785FA;//rgb(242, 242, 242);
-$table-view-odd-row-background: #85F4FA; //rgb(250, 250, 250);
-$table-view-row-inside-border-color: #e6e6e6;
-$table-view-row-hovered-background: #85FAD9;//rgb(254, 242, 199);
-$table-view-row-hovered-cell-border-color: darken($table-view-row-hovered-background, 25%);
-$table-view-row-selected-background: rgb(253, 230, 143);
-$table-view-row-selected-inside-border-color: darken($table-view-row-selected-background, 25%);
-$table-view-row-selected-cell-border-color: darken($table-view-row-selected-background, 25%);
-
-
-$table-view-padding: em($font-size / 2);
-$table-view-margin: em($font-size / 2);
-$table-view-navigation-panel-margin: em($font-size / 2);
-$table-view-inner-border-width: em(1);
-$table-view-inner-padding: em($font-size);
-$table-view-header-border-bottom-width: em(3);
+$table-view-colors: (
+    --tableHeaderBackground: rgb(242, 242, 242),
+    --tableHeaderForeground: #000,
+    --tableHeaderBorderColor: rgb(230, 230, 230),
+    --tableOddRowBackground: rgb(250, 250, 250),
+    --tableHoveredRowBackground: rgb(254, 242, 199)
+);
