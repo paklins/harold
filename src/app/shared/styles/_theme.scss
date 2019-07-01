@@ -1,0 +1,45 @@
+@import 'functions';
+@import 'mixins/debug';
+
+$generated-theme: (
+    --tableHeaderBackground: --tableHeaderBackground
+);
+
+// map-merge($generated-theme, $table-view-colors);
+
+$variables: ();
+
+@function theme-var($variable)
+{
+    $variable-name: map-get($generated-theme, $variable);
+
+    @debug inspect($variable-name);
+
+    @return $variable-name;
+}
+
+@mixin add-theme-var($variable, $value)
+{
+    $generated-theme: map-set($variables, $variable, var($variable));
+
+    $variable: $value;
+}
+
+@mixin theme-value($style, $name)
+{
+    $value: theme-var($name);
+    #{$style}: $value;
+}
+
+::ng-deep{
+    .default-theme
+    {
+        // --tableHeaderBackground: rgb(242, 242, 242);
+        @include add-theme-var(--tableHeaderBackground, rgb(242, 242, 242));
+        @include add-theme-var(--tableHeaderForeground, #000);
+
+        --tableHeaderBorderColor: rgb(230, 230, 230);
+        --tableOddRowBackground: rgb(250, 250, 250);
+        --tableHoveredRowBackground: rgb(254, 242, 199);
+    }
+}

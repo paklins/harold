@@ -1,7 +1,11 @@
+@import 'theme';
 @import "themes/default/theme";
+@import 'debug';
 
 @mixin generate-theme($name)
 {
+    @debug map-inspect($generated-theme);
+
     #{'.' + $name + '-theme'}{ 
         color: white;
 

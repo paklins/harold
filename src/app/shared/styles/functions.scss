@@ -24,3 +24,10 @@
 {
     @return ($pixels / $context);
 }
+
+@function map-set($map, $key, $value)
+{
+    $item: ($key: $value);
+
+    @return map-merge($map, $item);
+}

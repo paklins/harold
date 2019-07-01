@@ -19,13 +19,13 @@ export class TableViewComponent implements OnInit, AfterViewInit
     @Input()
     public source: Table;
 
-    @ViewChild('table')
+    @ViewChild('table', {static: false})
     public table: ElementRef;
 
-    @ViewChild('tableHeader')
+    @ViewChild('tableHeader', {static: false})
     public theader: ElementRef;
 
-    @ViewChild('tableBody')
+    @ViewChild('tableBody', {static: false})
     public tbody: ElementRef;
 
     public get Rows(): TableRow[]

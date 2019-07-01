@@ -16,7 +16,7 @@
         @include scroll-view(overflow-x);
         @include border(
             $all: $border-width, 
-            $color: theme-var(tableHeaderBorderColor));
+            $color: theme-var(--tableHeaderBorderColor));
 
         .au-header
         {
@@ -26,7 +26,7 @@
                 $bottom: $table-view-header-border-bottom-width,
                 $color: theme-var(tableHeaderBorderColor));
 
-            @include theme-value(color, tableHeaderForeground);
+            @include theme-value(color, --tableHeaderForeground);
 
             position: fixed;
 
@@ -49,7 +49,8 @@
                         @include border($all: 0);
                     }
 
-                    background: theme-var(tableHeaderBackground);
+                    @include theme-value(background, --tableHeaderBackground);
+
                     font-weight: $font-header-weight;
 
                     .au-header-text
