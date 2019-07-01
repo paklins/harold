@@ -1,4 +1,5 @@
 @import 'base';
+@import 'theme';
 
 .au-button
 {
@@ -13,7 +14,7 @@
 
     .au-layout-transparent
     {
-        background: transparent;
+        background: theme-var(--buttonBackground);
     }
 
     .au-button-layout{
@@ -41,5 +42,17 @@
     .au-layout-hidden
     {
         visibility: hidden;
+    }
+
+    .au-layout-hovered
+    {
+        $background: var(--buttonHoverBackground);
+        @debug red(#{$background});
+
+        background: $background;
+
+        au-icon{
+            //color: contrast-color(rgba(theme-var(--buttonHoverBackground)));
+        }
     }
 }

@@ -24,9 +24,9 @@
             @include margin($right: $table-view-margin);
             @include border(
                 $bottom: $table-view-header-border-bottom-width,
-                $color: theme-var(tableHeaderBorderColor));
+                $color: theme-var(--tableHeaderBorderColor));
 
-            @include theme-value(color, --tableHeaderForeground);
+            color: theme-var(--tableHeaderForeground);
 
             position: fixed;
 
@@ -49,7 +49,7 @@
                         @include border($all: 0);
                     }
 
-                    @include theme-value(background, --tableHeaderBackground);
+                    background: theme-var(--tableHeaderBackground);
 
                     font-weight: $font-header-weight;
 
@@ -68,15 +68,15 @@
             .au-row
             {
                 @include flex($direction: row);
-                @include transition(200ms background ease-out);
+                @include transition(100ms background ease-out);
 
                 &:nth-child(odd)
                 {
                     @include box-shadow(
-                        inset 0 ($border-width + $main-measurement) theme-var(tableHeaderBorderColor), 
-                        inset 0 (- $border-width + $main-measurement) 0 theme-var(tableHeaderBorderColor));
+                        inset 0 ($border-width + $main-measurement) theme-var(--tableHeaderBorderColor), 
+                        inset 0 (- $border-width + $main-measurement) 0 theme-var(--tableHeaderBorderColor));
                     
-                    @include theme-value(background, tableOddRowBackground);
+                    background: theme-var(--tableOddRowBackground);
                 }
 
                 .au-body-cell
@@ -96,17 +96,17 @@
                 {
                     @include box-shadow(none);
 
-                    @include theme-value(background, tableHoveredRowBackground);
+                    background: theme-var(--tableHoveredRowBackground);
 
                     @include box-shadow(inset 0 0 0
                         ($table-view-inner-border-width + $main-measurement) 
-                        $table-view-row-hovered-cell-border-color);
+                        theme-var(--tableHoveredRowCellBorderColor));
 
                     .au-body-cell-hovered
                     {
                         @include border(
                             $right: $table-view-inner-border-width,
-                            $color: $table-view-row-hovered-cell-border-color);
+                            $color: theme-var(--tableHoveredRowCellBorderColor));
 
                         font-weight: $font-header-weight;
 
@@ -121,18 +121,18 @@
                 {
                     @include box-shadow(inset 0 0 0
                         ($table-view-inner-border-width + $main-measurement) 
-                        $table-view-row-selected-inside-border-color);
+                        theme-var(--tableHoveredRowSelectedBorderColor));
 
                     @include border($all: 0);
 
-                    background: $table-view-row-selected-background;
+                   background: theme-var(--tableHoveredRowSelectedBackground);
 
                     .au-body-cell-selected
                     {
                         font-weight: bold;
                         @include border(
                             $right: $table-view-inner-border-width, 
-                            $color: $table-view-row-selected-cell-border-color);
+                            $color: theme-var(--tableHoveredRowSelectedBorderColor));
 
                         &:last-child
                         {

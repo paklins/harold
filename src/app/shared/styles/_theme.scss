@@ -1,45 +1,56 @@
 @import 'functions';
 @import 'mixins/debug';
 
-$generated-theme: (
-    --tableHeaderBackground: --tableHeaderBackground
-);
+@import 'themes/channel-values';
+@import 'themes/generated-theme';
+@import "themes/default/theme";
+@import "themes/modern/theme";
 
-// map-merge($generated-theme, $table-view-colors);
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+@function luminance($color)
+{
+    $red: nth($linear-channel-values, red($color) + 1);
+    $green: nth($linear-channel-values, green($color) + 1);
+    $blue: nth($linear-channel-values, blue($color) + 1);
+  
+    @return .2126 * $red + .7152 * $green + .0722 * $blue;
+}
 
-$variables: ();
+/**
+   * Calculate the contrast ratio between two colors.
+   * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+   */
+@function contrast($back, $front)
+{
+    $backLum: luminance($back) + .05;
+    $foreLum: luminance($front) + .05;
+
+    @return max($backLum, $foreLum) / min($backLum, $foreLum);
+}
+  
+/**
+* Determine whether to use dark or light text on top of given color.
+* Returns black for dark text and white for light text.
+*/
+@function contrast-color($color)
+{
+    $lightContrast: contrast($color, white);
+    $darkContrast: contrast($color, black);
+  
+    @if ($lightContrast > $darkContrast) {
+      @return white;
+    }
+    @else {
+      @return black;
+    }
+}
 
 @function theme-var($variable)
 {
     $variable-name: map-get($generated-theme, $variable);
 
-    @debug inspect($variable-name);
-
-    @return $variable-name;
-}
-
-@mixin add-theme-var($variable, $value)
-{
-    $generated-theme: map-set($variables, $variable, var($variable));
-
-    $variable: $value;
-}
-
-@mixin theme-value($style, $name)
-{
-    $value: theme-var($name);
-    #{$style}: $value;
-}
-
-::ng-deep{
-    .default-theme
-    {
-        // --tableHeaderBackground: rgb(242, 242, 242);
-        @include add-theme-var(--tableHeaderBackground, rgb(242, 242, 242));
-        @include add-theme-var(--tableHeaderForeground, #000);
-
-        --tableHeaderBorderColor: rgb(230, 230, 230);
-        --tableOddRowBackground: rgb(250, 250, 250);
-        --tableHoveredRowBackground: rgb(254, 242, 199);
-    }
+    @return var($variable-name);
 }

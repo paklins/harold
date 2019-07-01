@@ -7,10 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "compodoc": "compodoc",
-    "generate-docs": "compodoc -p \"src/tsconfig.app.json\"",
-    "serve-docs": "compodoc -s \"src/tsconfig.app.json\""
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -23,23 +20,22 @@
     "@angular/platform-browser-dynamic": "~8.1.0-beta.0",
     "@angular/router": "~8.1.0-beta.0",
     "classlist.js": "^1.1.20150312",
-    "core-js": "^3.1.3",
+    "core-js": "^3.1.4",
     "es6": "0.0.7",
     "material-design-icons": "^3.0.1",
     "rxjs": "~6.5.2",
-    "tslib": "^1.9.3",
-    "web-animations-js": "^2.3.1",
+    "tslib": "^1.10.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.800.1",
-    "@angular/cli": "~8.0.1",
+    "@angular-devkit/build-angular": "~0.800.6",
+    "@angular/cli": "~8.0.6",
     "@angular/compiler-cli": "~8.1.0-beta.0",
     "@angular/language-service": "~8.1.0-beta.0",
-    "@compodoc/compodoc": "^1.1.9",
     "@types/jasmine": "~3.3.13",
     "@types/jasminewd2": "~2.0.6",
-    "@types/node": "~8.10.49",
+    "@types/node": "~12.0.10",
     "codelyzer": "^5.1.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -49,8 +45,8 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~6.0.0",
-    "ts-node": "~8.2.0",
-    "tslint": "~5.17.0",
+    "ts-node": "~8.3.0",
+    "tslint": "~5.18.0",
     "typescript": "~3.6.0-dev.20190602"
   }
 }

@@ -71,7 +71,7 @@
               $bottom: 0,
               $left: 0,
               $style: solid,
-              $color: $border-color,
+              $color: var(--tableHeaderBorderColor),
               $all: none)
 {
     outline: none;

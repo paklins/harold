@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ButtonComponent implements OnInit
 {
+    private hovered: boolean = false;
+
     @Input()
     public icon: string;
 
@@ -30,6 +32,11 @@ export class ButtonComponent implements OnInit
     ngOnInit()
     {}
 
+    public mouseHover(event: any, value: boolean): void
+    {
+        this.hovered = value;
+    }
+
     public layoutClasses(): object
     {
         let classes: object = 
@@ -37,7 +44,8 @@ export class ButtonComponent implements OnInit
             'au-button-layout': !this.noSpace,
             'au-layout-no-space': this.noSpace,
             'au-layout-transparent': this.transparent,
-            'au-layout-hidden': this.hidden
+            'au-layout-hidden': this.hidden,
+            'au-layout-hovered': this.hovered
         };
 
         return classes;
