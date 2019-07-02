@@ -1,8 +1,21 @@
+@import 'themes/theme-list';
+
 .modern-theme
 {
+    @include set-current-theme(modern2);
+    @debug inspect($value: current-theme());
+
     --tableHeaderBackground: rgb(1, 1, 242);
     --tableHeaderForeground: #000;
     --tableHeaderBorderColor: rgb(230, 230, 230);
     --tableOddRowBackground: rgb(250, 250, 250);
     --tableHoveredRowBackground: rgb(254, 242, 199);
 };
+
+$variables: (
+    table: (
+        background: 456
+    )
+);
+
+$theme-list: map-set($theme-list, modern, $variables);

@@ -1,5 +1,12 @@
+@import 'themes/colors';
+
 .default-theme
 {
+    $buttonbackground: white;
+    $buttonHoverBackground: darken($buttonbackground, 20%);
+    $buttonHoverForeground: contrast-color($buttonHoverBackground);
+    $buttonTransparentForeground: darken($buttonbackground, 50%);
+
     --tableHeaderBackground: rgb(242, 242, 242);
     --tableHeaderForeground: rgb(0, 0, 0);
     --tableHeaderBorderColor: rgb(230, 230, 230);
@@ -8,7 +15,8 @@
     --tableHoveredRowCellBorderColor: darken(var(--tableHoveredRowBackground), 25%);
     --tableHoveredRowSelectedBackground: rgb(253, 230, 143);
     --tableHoveredRowSelectedBorderColor: darken(var(--tableHoveredRowSelectedBackground), 25%);
-
-    --buttonBackground: transparent;
-    --buttonHoverBackground: 242, 242, 242;
+    --buttonBackground: #{$buttonbackground};
+    --buttonHoverBackground: #{$buttonHoverBackground};
+    --buttonHoverForeground: #{$buttonHoverForeground};
+    --buttonTransparentForeground: #{$buttonTransparentForeground};
 };

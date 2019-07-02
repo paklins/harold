@@ -27,6 +27,12 @@ export class ButtonComponent implements OnInit
     @Input()
     public rotatedIcon: boolean;
 
+    @Input()
+    public invertVIcon: boolean;
+
+    @Input()
+    public invertHIcon: boolean;
+
     constructor(){}
 
     ngOnInit()
@@ -56,7 +62,9 @@ export class ButtonComponent implements OnInit
         let classes: object = 
         {
             'au-button-icon': true,
-            'au-button-rotated-icon': this.rotatedIcon
+            'au-button-rotated-icon': this.rotatedIcon,
+            'au-button-v-invert-icon': this.invertVIcon,
+            'au-button-h-invert-icon': this.invertHIcon
         };
 
         return classes;

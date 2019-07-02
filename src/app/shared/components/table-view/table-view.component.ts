@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Table } from '../../models/table';
 import { TableRow } from '../../models/table-row';
+import { TableColumn } from '../../models/table-column';
 
 @Component({
     selector: 'au-table-view',
@@ -185,5 +186,10 @@ export class TableViewComponent implements OnInit, AfterViewInit
         };
 
         return classes;
+    }
+
+    public sortClick(event: any, column: TableColumn): void
+    {
+        column.sortType = (column.sortType === 'asc' ? 'desc' : 'asc');
     }
 }

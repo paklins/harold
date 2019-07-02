@@ -19,10 +19,11 @@
 
                     <au-button 
                             icon="sort"
+                            [invertVIcon]="column.sortType == 'asc'"
+                            (click)="sortClick($event, column)"
                             [noSpace]="true"
                             [transparent]="true"
-                            [hidden]="hoveredHeaderColumnId != column.id"
-                            [rotatedIcon]="true">
+                            [hidden]="!column.sortable || hoveredHeaderColumnId != column.id">
                     </au-button>
                 </td>
             </tr>
@@ -50,23 +51,19 @@
         <au-command-panel>
             <au-button 
                     icon="vertical_align_top"
-                    [noSpace]="true"
-                    [transparent]="true">
+                    [noSpace]="true">
             </au-button>
             <au-button
                     icon="chevron_left"
-                    [noSpace]="true"
-                    [transparent]="true">
+                    [noSpace]="true">
             </au-button>
             <au-button 
                     icon="chevron_right"
-                    [noSpace]="true"
-                    [transparent]="true">
+                    [noSpace]="true">
             </au-button>
             <au-button
                     icon="vertical_align_bottom"
-                    [noSpace]="true"
-                    [transparent]="true">
+                    [noSpace]="true">
             </au-button>
         </au-command-panel>
     </div>

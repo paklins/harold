@@ -1,20 +1,27 @@
 @import 'base';
 @import 'theme';
+@import 'transforms';
 
 .au-button
 {
     @include flex($grow: 0, $direction: row);
+
+    button
+    {
+        background: theme-var(--buttonBackground);
+        @include transition(200ms background ease-out);
+
+        au-icon
+        {
+            @include transition(200ms transform ease-out);
+        }
+    }
 
     .au-button-layout-template
     {
         @include flex($grow: 0, $direction: row);
         @include margin();
         @include border($top: 0);
-    }
-
-    .au-layout-transparent
-    {
-        background: theme-var(--buttonBackground);
     }
 
     .au-button-layout{
@@ -33,6 +40,16 @@
         }
     }
 
+    .au-button-v-invert-icon
+    {
+        @include transform(scaleY(-1));
+    }
+
+    .au-button-h-invert-icon
+    {
+        @include transform(scaleX(-1));
+    }
+
     .au-layout-no-space
     {
         @extend .au-button-layout-template;
@@ -46,13 +63,19 @@
 
     .au-layout-hovered
     {
-        $background: var(--buttonHoverBackground);
-        @debug red(#{$background});
-
-        background: $background;
+        background: var(--buttonHoverBackground);
 
         au-icon{
-            //color: contrast-color(rgba(theme-var(--buttonHoverBackground)));
+            color: var(--buttonHoverForeground);
+        }
+    }
+
+    .au-layout-transparent
+    {
+        background: transparent;
+
+        au-icon{
+            color: var(--buttonTransparentForeground);
         }
     }
 }

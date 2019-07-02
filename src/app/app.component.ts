@@ -1,5 +1,6 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { Table } from './shared/models/table';
+import { TableColumnType } from './shared/models/table-column-type';
 
 @Component({
     selector: 'au-root',
@@ -25,7 +26,7 @@ export class AppComponent
     {
         this.table = new Table();
 
-        this.table.addColumn("test");
+        this.table.addColumn("test", '', TableColumnType.String, true);
         this.table.addColumn("test2");
         this.table.addColumn("test3");
 

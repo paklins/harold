@@ -56,13 +56,16 @@ export class Table
         return row;
     }
 
-    public addColumn(name: string, header: string = "", type: TableColumnType = TableColumnType.String): void
+    public addColumn(name: string, header: string="",
+        type: TableColumnType=TableColumnType.String, sortable: boolean=false, sortType: string='asc'): void
     {
         let column: TableColumn = new TableColumn();
         column.id = this.getColumnId();
         column.name = name;
         column.header = header.length ? header : name;
         column.type = type;
+        column.sortable = sortable;
+        column.sortType = sortType;
 
         this.columnsIds[name] = column.id;
 

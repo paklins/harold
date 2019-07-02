@@ -1,0 +1,13 @@
+$theme-list: ();
+
+$current-theme: default !default;
+
+@mixin set-current-theme($name)
+{
+    $current-theme: $name !global;
+}
+
+@function current-theme()
+{
+     @return $current-theme;
+}
