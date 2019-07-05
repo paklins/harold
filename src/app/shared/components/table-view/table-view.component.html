@@ -5,7 +5,18 @@
         </div>
     </div> -->
 <div class="au-table-view">
-    <table *ngIf="source" class="au-table"
+    <au-command-panel
+        *ngIf="useCommandPanel"
+        class="au-table-view-panel"
+        bindingSide="top">
+        <au-button 
+            icon="vertical_align_top"
+            [noSpace]="true"
+            text="Добавить">
+        </au-button>
+    </au-command-panel>
+
+    <table *ngIf="source" [ngClass]="tableClasses()"
         #table
         (scroll)="tableBodyScroll($event)">
         <thead #tableHeader
@@ -17,7 +28,7 @@
                     (mouseout)="headerCellMouseOver(undefined)">
                     <div class="au-header-text">{{column.header}}</div>
 
-                    <au-button 
+                    <au-button *ngIf="column.sortable"
                             icon="sort"
                             [invertVIcon]="column.sortType == 'asc'"
                             (click)="sortClick($event, column)"
@@ -48,10 +59,12 @@
     <div class="au-scroll-panel">
         <div auFlexBlock></div>
 
-        <au-command-panel>
+        <au-command-panel
+            bindingSide="bottom">
             <au-button 
                     icon="vertical_align_top"
-                    [noSpace]="true">
+                    [noSpace]="true"
+                    [flat]="true">
             </au-button>
             <au-button
                     icon="chevron_left"

@@ -2,10 +2,13 @@
 
 .default-theme
 {
-    $buttonbackground: white;
-    $buttonHoverBackground: darken($buttonbackground, 20%);
+    $buttonBackground: #FFDE03;
+    $buttonFlatBackground: white;
+    $buttonHoverBackground: lighten($buttonBackground, 15%);
     $buttonHoverForeground: contrast-color($buttonHoverBackground);
-    $buttonTransparentForeground: darken($buttonbackground, 50%);
+    $buttonFlatHoverBackground: darken($buttonFlatBackground, 15%);
+    $buttonFlatHoverForeground: contrast-color($buttonFlatHoverBackground);
+    $buttonTransparentForeground: darken($buttonBackground, 50%);
 
     --tableHeaderBackground: rgb(242, 242, 242);
     --tableHeaderForeground: rgb(0, 0, 0);
@@ -15,8 +18,11 @@
     --tableHoveredRowCellBorderColor: darken(var(--tableHoveredRowBackground), 25%);
     --tableHoveredRowSelectedBackground: rgb(253, 230, 143);
     --tableHoveredRowSelectedBorderColor: darken(var(--tableHoveredRowSelectedBackground), 25%);
-    --buttonBackground: #{$buttonbackground};
+    --buttonBackground: #{$buttonBackground};
+    --buttonFlatBackground: #{$buttonFlatBackground};
     --buttonHoverBackground: #{$buttonHoverBackground};
     --buttonHoverForeground: #{$buttonHoverForeground};
+    --buttonFlatHoverBackground: #{$buttonHoverBackground};
+    --buttonFlatHoverForeground: #{$buttonHoverForeground};
     --buttonTransparentForeground: #{$buttonTransparentForeground};
 };

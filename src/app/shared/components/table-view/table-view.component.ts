@@ -20,6 +20,9 @@ export class TableViewComponent implements OnInit, AfterViewInit
     @Input()
     public source: Table;
 
+    @Input()
+    public useCommandPanel: boolean = true;
+
     @ViewChild('table', {static: false})
     public table: ElementRef;
 
@@ -160,6 +163,17 @@ export class TableViewComponent implements OnInit, AfterViewInit
     public rowSelect(rowId: number): void
     {
         this.selectedRowId = this.selectedRowId === rowId ? undefined : rowId;
+    }
+
+    public tableClasses(): object
+    {
+        let classes: object =
+        {
+            'au-table': true,
+            'au-table-command-panel-disabled': !this.useCommandPanel
+        }
+
+        return classes;
     }
 
     public rowClasses(rowId: number): object

@@ -1,4 +1,6 @@
-<div class="au-button" (mouseenter)="mouseHover($event, true)" (mouseleave)="mouseHover($event, false)">
+<div class="au-button"
+    (mouseenter)="mouseHover($event, true)"
+    (mouseleave)="mouseHover($event, false)">
     <button [ngClass]="layoutClasses()">
         <au-icon *ngIf="icon" [source]="icon" [ngClass]="iconClasses()"></au-icon>
 

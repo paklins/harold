@@ -5,11 +5,18 @@
 {
     @include flex();
 
+    .au-table-view-panel
+    {
+        @include margin(
+            $top: $table-view-margin,
+            $right: $table-view-margin,
+            $left: $table-view-margin);
+    }
+
     .au-table
     {
         @include flex($shrink: 1);
         @include margin(
-            $top: $table-view-margin,
             $right: $table-view-margin,
             $left: $table-view-margin);
 
@@ -41,7 +48,7 @@
                         $direction: row,
                         $align: center);
 
-                    @include padding($all: $table-view-inner-padding);
+                    @include padding($all: $table-view-header-inner-padding);
                     @include border($right: $table-view-inner-border-width);
 
                     &:last-child
@@ -151,5 +158,13 @@
             $right: $table-view-navigation-panel-margin, 
             $left: $table-view-navigation-panel-margin, 
             $bottom: $table-view-navigation-panel-margin);
+    }
+
+    .au-table-command-panel-disabled
+    {
+        @include margin(
+            $top: $table-view-margin,
+            $right: $table-view-margin,
+            $left: $table-view-margin);
     }
 }

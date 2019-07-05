@@ -1,6 +1,7 @@
 @import 'base';
 @import 'theme';
 @import 'transforms';
+@import 'mixins';
 
 .au-button
 {
@@ -15,6 +16,18 @@
         {
             @include transition(200ms transform ease-out);
         }
+
+        .au-button-text
+        {
+            @include flex($direction: row);
+            @include align-items($align: center);
+            @include padding($left: .5, $right: .5);
+        }
+    }
+
+    .au-button-flat
+    {
+        background: var(--buttonFlatBackground);
     }
 
     .au-button-layout-template
@@ -32,11 +45,7 @@
         .au-button-text
         {
             @include padding($left: .5);
-        }
-
-        .au-button-rotated-icon
-        {
-            @include rotate(180);
+            @include flex($direction: column);
         }
     }
 
@@ -67,6 +76,15 @@
 
         au-icon{
             color: var(--buttonHoverForeground);
+        }
+    }
+
+    .au-layout-flat-hovered
+    {
+        background: var(--buttonFlatHoverBackground);
+
+        au-icon{
+            color: var(--buttonFlatHoverForeground);
         }
     }
 

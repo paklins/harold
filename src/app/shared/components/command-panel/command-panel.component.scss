@@ -2,12 +2,39 @@
 
 .au-command-panel
 {
-    @include border(
-        $left: $border-width,
-        $bottom: $border-width,
-        $right: $border-width);
-
     @include padding($all: $command-panel-padding);
+}
+
+.au-command-panel-binding-top
+{
+    @include border(
+        $top: $border-width,
+        $right: $border-width,
+        $left: $border-width);
+}
+
+.au-command-panel-binding-right
+{
+    @include border(
+        $top: $border-width,
+        $right: $border-width,
+        $bottom: $border-width);
+}
+
+.au-command-panel-binding-bottom
+{
+    @include border(
+        $right: $border-width,
+        $bottom: $border-width,
+        $left: $border-width);
+}
+
+.au-command-panel-binding-left
+{
+    @include border(
+        $top: $border-width,
+        $bottom: $border-width,
+        $left: $border-width);
 }
 
 .au-command-panel-vertical

@@ -25,7 +25,7 @@ export class ButtonComponent implements OnInit
     public hidden: boolean;
 
     @Input()
-    public rotatedIcon: boolean;
+    public flat: boolean;
 
     @Input()
     public invertVIcon: boolean;
@@ -51,7 +51,8 @@ export class ButtonComponent implements OnInit
             'au-layout-no-space': this.noSpace,
             'au-layout-transparent': this.transparent,
             'au-layout-hidden': this.hidden,
-            'au-layout-hovered': this.hovered
+            'au-layout-hovered': !this.flat && this.hovered,
+            'au-layout-flat-hovered': this.flat && this.hovered
         };
 
         return classes;
@@ -62,7 +63,7 @@ export class ButtonComponent implements OnInit
         let classes: object = 
         {
             'au-button-icon': true,
-            'au-button-rotated-icon': this.rotatedIcon,
+            'au-button-flat': this.flat,
             'au-button-v-invert-icon': this.invertVIcon,
             'au-button-h-invert-icon': this.invertHIcon
         };
